@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { createClient } from '@/lib/supabase/client'
+import { signUpAction } from '@/features/auth/actions/register'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -27,7 +27,6 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = createClient()
     setIsLoading(true)
     setError(null)
 
@@ -37,15 +36,13 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
       return
     }
 
+    const formData = new FormData()
+    formData.append('email', email)
+    formData.append('password', password)
+
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
-        },
-      })
-      if (error) throw error
+      const result = await signUpAction(formData, window.location.origin)
+      if (result.error) throw new Error(result.error)
       router.push('/auth/sign-up-success')
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : 'An error occurred')
