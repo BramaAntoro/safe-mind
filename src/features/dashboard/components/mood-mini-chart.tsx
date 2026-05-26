@@ -36,7 +36,6 @@ export function MoodMiniChart({ data }: MoodMiniChartProps) {
                 hide
               />
               <Tooltip 
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 formatter={(value: any) => {
                   const val = Number(value)
                   if (val >= 4.5) return ['Sangat Baik', 'Mood']

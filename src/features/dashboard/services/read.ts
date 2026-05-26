@@ -21,11 +21,9 @@ const VALUE_TO_MOOD: Record<number, MoodType> = {
 export async function getDashboardData(userId: string): Promise<DashboardData> {
   const supabase = await createClient()
 
-  // 1. Get user profile (from auth.users metadata as per PRD)
   const { data: { user } } = await supabase.auth.getUser()
   const name = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split('@')[0] || 'User'
 
-  // 2. Get activities for this week
   const now = new Date()
   const startOfThisWeek = startOfWeek(now, { weekStartsOn: 1 })
   const endOfThisWeek = endOfWeek(now, { weekStartsOn: 1 })
@@ -39,7 +37,6 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
 
   const totalActivitiesThisWeek = thisWeekActivities?.length || 0
 
-  // 3. Average mood (last 7 days)
   const last7Days = subDays(now, 7)
   const { data: last7DaysActivities } = await supabase
     .from('activities')
@@ -54,8 +51,6 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     averageMood = VALUE_TO_MOOD[avg as keyof typeof VALUE_TO_MOOD] || 'NEUTRAL'
   }
 
-  // 4. Current streak
-  // This is a bit simplified: days with at least one activity
   const { data: allActivities } = await supabase
     .from('activities')
     .select('date')
@@ -67,7 +62,6 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     const uniqueDays = Array.from(new Set(allActivities.map(a => a.date))).sort().reverse()
     let checkDate = new Date()
     
-    // If no activity today, check if there was one yesterday
     const todayStr = format(checkDate, 'yyyy-MM-dd')
     const yesterdayStr = format(subDays(checkDate, 1), 'yyyy-MM-dd')
     
@@ -87,7 +81,6 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     }
   }
 
-  // 5. Recent activities (last 5)
   const { data: recentActivities } = await supabase
     .from('activities')
     .select('*')
@@ -95,7 +88,6 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     .order('created_at', { ascending: false })
     .limit(5)
 
-  // 6. Mood chart data (last 7 days)
   const moodChartData = []
   for (let i = 6; i >= 0; i--) {
     const date = subDays(now, i)

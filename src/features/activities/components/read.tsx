@@ -100,7 +100,6 @@ export function ActivityList({ activities }: ActivityListProps) {
   )
 }
 
-// Utility to handle class merging
 function cn(...classes: (string | boolean | undefined | null)[]) {
   return classes.filter(Boolean).join(' ')
 }
