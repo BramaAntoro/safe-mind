@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
-import { createCategoryAction } from '../actions/category.actions'
+import { createCategoryAction } from '../actions/createCategory.action'
 
 export function AddCategoryForm() {
   const [state, action, isPending] = useActionState(createCategoryAction, null)

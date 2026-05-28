@@ -3,7 +3,7 @@
 import { Trash2 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { removeCategoryAction } from '../actions/category.actions'
+import { removeCategoryAction } from '../actions/removeCategory.action'
 import type { Category } from '@/features/activities/types/activity.types'
 
 interface CategoryListProps {

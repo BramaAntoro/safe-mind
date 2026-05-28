@@ -1,4 +1,4 @@
-import { fetchDashboardData } from '@/features/dashboard/actions/read'
+import { fetchDashboardData } from '@/features/dashboard/actions/fetchDashboardData.action'
 import { Dashboard } from '@/features/dashboard/components/read'
 import { Suspense } from 'react'
 

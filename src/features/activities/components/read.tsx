@@ -1,11 +1,12 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { Trash2 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import type { Activity, MoodType, Category } from '../types/activity.types'
-import { removeActivityAction } from '../actions/activity.actions'
+import { removeActivityAction } from '../actions/removeActivity.action'
 
 interface ActivityListProps {
   activities: (Activity & { categories: Category | null })[]
@@ -100,6 +101,5 @@ export function ActivityList({ activities }: ActivityListProps) {
   )
 }
 
-function cn(...classes: (string | boolean | undefined | null)[]) {
-  return classes.filter(Boolean).join(' ')
-}
+
+

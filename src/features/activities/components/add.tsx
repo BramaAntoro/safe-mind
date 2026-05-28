@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { MoodPicker } from './mood-picker'
 import type { MoodType, Category } from '../types/activity.types'
-import { createActivityAction } from '../actions/activity.actions'
+import { createActivityAction } from '../actions/createActivity.action'
 import { format } from 'date-fns'
 
 interface AddActivityFormProps {

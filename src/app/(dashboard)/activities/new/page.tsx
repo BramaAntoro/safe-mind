@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { getCategories } from '@/features/activities/services/activity.service'
+import { getCategories } from '@/features/categories/services/getCategories.service'
 import { AddActivityForm } from '@/features/activities/components/add'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'

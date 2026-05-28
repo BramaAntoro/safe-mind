@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { signUpAction } from '@/features/auth/actions/register'
+import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -27,6 +27,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
+    const supabase = createClient()
     setIsLoading(true)
     setError(null)
 
@@ -36,13 +37,15 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
       return
     }
 
-    const formData = new FormData()
-    formData.append('email', email)
-    formData.append('password', password)
-
     try {
-      const result = await signUpAction(formData, window.location.origin)
-      if (result.error) throw new Error(result.error)
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/protected`,
+        },
+      })
+      if (error) throw error
       router.push('/auth/sign-up-success')
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : 'An error occurred')
@@ -96,14 +99,14 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
                   onChange={(e) => setRepeatPassword(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-destructive">{error}</p>}
+              {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Creating an account...' : 'Sign up'}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{' '}
-              <Link href="/auth/login" className="text-secondary underline underline-offset-4">
+              <Link href="/auth/login" className="underline underline-offset-4">
                 Login
               </Link>
             </div>

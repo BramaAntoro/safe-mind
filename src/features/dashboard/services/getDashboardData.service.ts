@@ -40,7 +40,7 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
   const last7Days = subDays(now, 7)
   const { data: last7DaysActivities } = await supabase
     .from('activities')
-    .select('mood')
+    .select('mood, date')
     .eq('user_id', userId)
     .gte('date', format(last7Days, 'yyyy-MM-dd'))
 

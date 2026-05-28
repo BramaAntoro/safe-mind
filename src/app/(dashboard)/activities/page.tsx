@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { getActivities } from '@/features/activities/services/activity.service'
+import { getActivities } from '@/features/activities/services/getActivities.service'
 import { ActivityList } from '@/features/activities/components/read'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'

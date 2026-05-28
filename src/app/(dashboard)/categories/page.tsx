@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { getCategories } from '@/features/categories/services/category.service'
+import { getCategories } from '@/features/categories/services/getCategories.service'
 import { CategoryList } from '@/features/categories/components/read'
 import { AddCategoryForm } from '@/features/categories/components/add'
 import { redirect } from 'next/navigation'
