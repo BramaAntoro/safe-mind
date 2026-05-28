@@ -1,6 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import { Brain, Sparkles, Activity, ChevronRight, CheckCircle2, Shield, MessageSquare, Zap, BarChart } from 'lucide-react'
+import { Brain, Sparkles, Activity, Shield, MessageSquare, Zap, BarChart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function LandingPage() {
@@ -10,12 +12,12 @@ export default function LandingPage() {
       <header className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100">
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 overflow-hidden rounded-xl shadow-sm border border-slate-100">
+            <div className="relative w-10 h-10 overflow-hidden">
               <Image 
                 src="/logo_palugada_tech.png" 
-                alt="Palugada Tech Logo" 
+                alt="palugada.tech Logo" 
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">
@@ -30,12 +32,9 @@ export default function LandingPage() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/auth/login" className="hidden sm:block">
-              <Button variant="ghost" className="text-slate-600 font-medium">Masuk</Button>
-            </Link>
-            <Link href="/auth/sign-up">
-              <Button className="bg-slate-900 hover:bg-slate-800 text-white rounded-full px-6 shadow-lg shadow-slate-200 transition-all active:scale-95">
-                Mulai Free
+            <Link href="/auth/login">
+              <Button className="bg-slate-900 hover:bg-slate-800 text-white rounded-full px-8 shadow-lg shadow-slate-200 transition-all active:scale-95">
+                Masuk ke Dashboard
               </Button>
             </Link>
           </div>
@@ -67,15 +66,11 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-              <Link href="/auth/sign-up" className="w-full sm:w-auto">
+              <Link href="/auth/login" className="w-full sm:w-auto">
                 <Button className="w-full sm:w-auto h-14 px-10 bg-indigo-600 hover:bg-indigo-700 text-white text-lg rounded-full shadow-xl shadow-indigo-100 transition-all hover:-translate-y-1">
-                  Dapatkan Akses Sekarang
+                  Masuk Sekarang
                 </Button>
               </Link>
-              <div className="flex items-center gap-2 text-slate-400 text-sm">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                <span>Tanpa biaya langganan awal</span>
-              </div>
             </div>
           </div>
         </section>
@@ -119,14 +114,6 @@ export default function LandingPage() {
                     <div className="h-2 w-32 bg-slate-800 rounded-full mx-auto opacity-50" />
                   </div>
                 </div>
-                {/* Decorative UI elements */}
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden md:block">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                    <span className="text-xs font-bold text-slate-400 uppercase">Status</span>
-                  </div>
-                  <p className="text-sm font-bold text-slate-800">Mood Membaik +15%</p>
-                </div>
               </div>
             </div>
           </div>
@@ -153,14 +140,6 @@ export default function LandingPage() {
                   <p className="text-slate-500 leading-relaxed mb-6">
                     Kirim data 1 minggu atau 1 bulan terakhir hanya dengan satu klik. AI akan memberikan jawaban seperti psikiater profesional.
                   </p>
-                  <ul className="space-y-3">
-                    {['Analisis kondisi mental saat ini', 'Hal-hal yang harus dihindari', 'Rekomendasi gaya hidup', 'Latihan mindfulness personal'].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
                 <div className="bg-slate-900 p-10 rounded-[2.5rem] text-white flex flex-col justify-between">
                   <div>
@@ -172,9 +151,11 @@ export default function LandingPage() {
                       "Berdasarkan pola tidur dan aktivitasmu bulan ini, kamu menunjukkan gejala burnout awal. Hindari bekerja setelah jam 8 malam dan fokuslah pada..."
                     </p>
                   </div>
-                  <Button className="mt-12 bg-indigo-500 hover:bg-indigo-400 text-white rounded-full w-full h-12">
-                    Pelajari Cara Kerjanya
-                  </Button>
+                  <Link href="/auth/login">
+                    <Button className="mt-12 bg-indigo-500 hover:bg-indigo-400 text-white rounded-full w-full h-12">
+                      Mulai Sekarang
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -200,9 +181,11 @@ export default function LandingPage() {
             <div className="bg-indigo-600 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 relative z-10">Mulai Perjalananmu Menuju <br /> Ketenangan Hari Ini.</h2>
-              <Link href="/auth/sign-up" className="relative z-10">
-                <Button className="h-16 px-12 bg-white text-indigo-600 hover:bg-slate-100 text-xl font-bold rounded-full shadow-2xl transition-transform active:scale-95">
-                  Daftar Sekarang — Gratis
+              <Link href="/auth/login" className="relative z-10">
+                <Button 
+                  className="h-16 px-12 bg-white text-indigo-600 hover:bg-slate-100 text-xl font-bold rounded-full shadow-2xl transition-transform active:scale-95"
+                >
+                  Masuk ke Akun Anda
                 </Button>
               </Link>
             </div>
