@@ -10,6 +10,7 @@
     "update-types": "export $(cat .env.local | xargs) && npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/lib/supabase/database.types.ts"
   },
   "dependencies": {
+    "@google/genai": "^2.7.0",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.106.0",
     "class-variance-authority": "^0.7.1",
