@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, List, BarChart2, Settings } from 'lucide-react'
+import { LayoutDashboard, List, BarChart2, Settings, Sparkles } from 'lucide-react'
 import { LogoutButton } from '@/components/logout-button'
 
 export default async function DashboardLayout({
@@ -19,7 +19,8 @@ export default async function DashboardLayout({
   const navItems = [
     { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { label: 'Activities', href: '/activities', icon: List },
-    { label: 'Categories', href: '/categories', icon: BarChart2 }, // Using BarChart2 as placeholder icon for categories as per request, or we can use another one
+    { label: 'Categories', href: '/categories', icon: BarChart2 },
+    { label: 'AI Insights', href: '/insights', icon: Sparkles },
     { label: 'Settings', href: '/settings', icon: Settings },
   ]
 

@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react'
+import { Plus, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { GreetingCard } from './greeting-card'
@@ -16,12 +16,20 @@ export function Dashboard({ data }: DashboardProps) {
     <div className="flex flex-col gap-8 p-4 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <GreetingCard name={data.user.name} />
-        <Link href="/activities/new">
-          <Button className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-6 px-6 rounded-xl shadow-lg transition-all active:scale-95 w-full md:w-auto">
-            <Plus className="h-5 w-5" />
-            Tambah Kegiatan
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+          <Link href="/insights" className="w-full sm:w-auto">
+            <Button variant="outline" className="flex items-center justify-center gap-2 border-indigo-200 text-indigo-700 hover:bg-indigo-50 font-semibold py-6 px-6 rounded-xl transition-all active:scale-95 w-full">
+              <Sparkles className="h-5 w-5" />
+              AI Insights
+            </Button>
+          </Link>
+          <Link href="/activities/new" className="w-full sm:w-auto">
+            <Button className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-6 px-6 rounded-xl shadow-lg transition-all active:scale-95 w-full">
+              <Plus className="h-5 w-5" />
+              Tambah Kegiatan
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <MiniStats 
