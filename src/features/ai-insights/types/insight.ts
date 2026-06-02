@@ -1,5 +1,5 @@
 export interface Insight {
-  id: number;
+  id: string;
   content: string;
   period: string;
   date: string;

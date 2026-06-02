@@ -6,7 +6,7 @@ import { Insight } from '../types/insight'
 
 interface InsightHistoryProps {
   history: Insight[]
-  selectedId: number
+  selectedId: string
   onSelect: (insight: Insight) => void
 }
 

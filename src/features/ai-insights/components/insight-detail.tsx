@@ -10,8 +10,8 @@ interface InsightDetailProps {
 
 export function InsightDetail({ insight }: InsightDetailProps) {
   return (
-    <Card className="h-full overflow-hidden border-none shadow-xl bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950 dark:to-slate-900">
-      <CardHeader className="pb-2">
+    <Card className="flex flex-col border-none shadow-xl bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950 dark:to-slate-900 min-h-[500px] max-h-[calc(100vh-120px)] lg:max-h-[calc(100vh-40px)]">
+      <CardHeader className="pb-2 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 fill-indigo-500 text-indigo-500" />
           <CardTitle className="text-xl font-bold text-indigo-700 dark:text-indigo-300">
@@ -20,9 +20,9 @@ export function InsightDetail({ insight }: InsightDetailProps) {
         </div>
       </CardHeader>
       
-      <CardContent className="mt-2">
+      <CardContent className="mt-2 flex-1 overflow-y-auto custom-scrollbar">
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500" key={insight.id}>
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 sticky top-0 bg-transparent py-1 backdrop-blur-sm">
             <Calendar className="h-4 w-4" />
             <span>Periode Analisis: {insight.period}</span>
           </div>
@@ -33,7 +33,7 @@ export function InsightDetail({ insight }: InsightDetailProps) {
             </p>
           </div>
 
-          <div className="flex items-start gap-3 p-4 bg-amber-50/50 dark:bg-amber-900/10 rounded-xl border border-amber-100/50 dark:border-amber-900/20">
+          <div className="flex items-start gap-3 p-4 bg-amber-50/50 dark:bg-amber-900/10 rounded-xl border border-amber-100/50 dark:border-amber-900/20 mb-4">
             <Info className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-700/80 dark:text-amber-500/80 italic">
               Insight ini dihasilkan secara otomatis berdasarkan data aktivitas mingguanmu. Gunakan saran ini sebagai referensi untuk meningkatkan kesejahteraan mentalmu.
